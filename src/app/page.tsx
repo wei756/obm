@@ -1,95 +1,33 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import { HaksikType, getHaksik } from './lib/api';
+import MenuCard from './ui/menu-card';
 
-export default function Home() {
+export default async function Home() {
+  const haksik = await getHaksik(new Date(), HaksikType.HAKSIK);
+  const gyosik = await getHaksik(new Date(), HaksikType.GYOSIK);
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
+    <main className="flex flex-col p-4 gap-2 items-stretch">
+      <MenuCard
+        name="아침"
+        time={haksik.menus[0].time}
+        menu={haksik.menus[0].menu}
+      />
+      <div className="flex flex-row overflow-x-auto gap-2">
+        <MenuCard
+          name="학생식당 점심"
+          time={haksik.menus[1].time}
+          menu={haksik.menus[1].menu}
+        />
+        <MenuCard
+          name="교직원식당 점심"
+          time={gyosik.menus[0].time}
+          menu={gyosik.menus[0].menu}
         />
       </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+      <MenuCard
+        name="교직원식당 저녁"
+        time={gyosik.menus[1].time}
+        menu={gyosik.menus[1].menu}
+      />
     </main>
   );
 }
