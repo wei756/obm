@@ -4,6 +4,8 @@ import MenuCard from './ui/menu-card';
 export default async function Home() {
   const haksik = await getHaksik(new Date(), HaksikType.HAKSIK);
   const gyosik = await getHaksik(new Date(), HaksikType.GYOSIK);
+  const bunsik = await getHaksik(new Date(), HaksikType.BUNSIK);
+
   return (
     <main className="flex flex-col p-4 gap-2 items-stretch">
       <MenuCard
@@ -27,6 +29,11 @@ export default async function Home() {
         name="교직원식당 저녁"
         time={gyosik.menus[1].time}
         menu={gyosik.menus[1].menu}
+      />
+      <MenuCard
+        name="분식당"
+        time={bunsik.menus[0].time}
+        menu={bunsik.menus[0].menu}
       />
     </main>
   );

@@ -15,7 +15,7 @@ export const getHaksik = async (
   const sikType = {
     [HaksikType.HAKSIK]: 'restaurant01',
     [HaksikType.GYOSIK]: 'restaurant02',
-    [HaksikType.BUNSIK]: 'restaurant03',
+    [HaksikType.BUNSIK]: 'restaurant04',
   };
   const res = await fetch(
     `https://www.kumoh.ac.kr/ko/${sikType[type]}.do?mode=menuList&srDt=${date
