@@ -17,10 +17,16 @@ export const getHaksik = async (
     [HaksikType.GYOSIK]: 'restaurant02',
     [HaksikType.BUNSIK]: 'restaurant04',
   };
+
+  const dayOffset = (date.getDay() + 6) % 7;
+
+  const newDate = new Date(date.getTime() - dayOffset * 24 * 60 * 60 * 1000);
+
   const res = await fetch(
-    `https://www.kumoh.ac.kr/ko/${sikType[type]}.do?mode=menuList&srDt=${date
+    `https://www.kumoh.ac.kr/ko/${sikType[type]}.do?mode=menuList&srDt=${newDate
       .toISOString()
       .slice(0, 10)}`,
+    { cache: 'force-cache' },
   ).then((res) => res.text());
   const content = parse(res);
 
