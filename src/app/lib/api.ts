@@ -26,7 +26,7 @@ export const getHaksik = async (
     `https://www.kumoh.ac.kr/ko/${sikType[type]}.do?mode=menuList&srDt=${newDate
       .toISOString()
       .slice(0, 10)}`,
-    { cache: 'force-cache' },
+    { cache: 'force-cache', next: { revalidate: 3600 } },
   ).then((res) => res.text());
   const content = parse(res);
 
