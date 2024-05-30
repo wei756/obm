@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Noto_Sans_KR } from 'next/font/google';
+import { GoogleAnalytics } from '@next/third-parties/google';
 import './globals.css';
 
 const notosans = Noto_Sans_KR({ subsets: ['latin'] });
@@ -19,6 +20,8 @@ export const metadata: Metadata = {
   icons: [{ rel: 'icon', url: '/assets/icon-192x192.png', sizes: '192x192' }],
 };
 
+const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_ID || '';
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -27,6 +30,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className={notosans.className}>{children}</body>
+      <GoogleAnalytics gaId={GA_TRACKING_ID} />
     </html>
   );
 }
