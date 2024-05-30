@@ -9,7 +9,7 @@ export const getHaksik = async (
     { cache: 'force-cache', next: { revalidate: 3600 } },
   );
   if (!res.ok) {
-    throw new Error('Failed to fetch haksik');
+    throw new Error('Failed to fetch haksik' + date.toISOString() + type);
   }
   return res.json();
 };
