@@ -3,9 +3,11 @@ import MenuCard from './menu-card';
 
 export default async function Menus({ date }: { date: Date }) {
   try {
-    const haksik = await getHaksik(date, HaksikType.HAKSIK);
-    const gyosik = await getHaksik(date, HaksikType.GYOSIK);
-    const bunsik = await getHaksik(date, HaksikType.BUNSIK);
+    const [haksik, gyosik, bunsik] = await Promise.all([
+      getHaksik(date, HaksikType.HAKSIK),
+      getHaksik(date, HaksikType.GYOSIK),
+      getHaksik(date, HaksikType.BUNSIK),
+    ]);
     return (
       <>
         <div className="py-2 text-sm font-medium w-full text-center">아침</div>
