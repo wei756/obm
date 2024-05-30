@@ -42,3 +42,6 @@ next-env.d.ts
 !.yarn/sdks
 !.yarn/versions
 .pnp.*
+
+/public/sw*
+/public/workbox-*
