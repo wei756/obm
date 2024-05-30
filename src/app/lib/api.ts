@@ -1,12 +1,6 @@
 import parse from 'node-html-parser';
 import { HTMLElement } from 'node-html-parser';
-import { MenuInfo, MenuItem } from './types';
-
-export enum HaksikType {
-  HAKSIK = '학생식',
-  GYOSIK = '교직원식당',
-  BUNSIK = '분식당',
-}
+import { HaksikType, MenuInfo, MenuItem } from './types';
 
 export const getHaksik = async (
   date: Date,

@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .menu-cards {
+    @apply flex flex-row overflow-x-auto gap-2 w-full;
+  }
+}

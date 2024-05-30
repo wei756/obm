@@ -1,50 +1,29 @@
-import { getHaksik, HaksikType } from '../lib/api';
-import MenuCard from './menu-card';
+import { HaksikTime, HaksikType } from '../lib/types';
+import Menu from './menu';
 
-export default async function Menus({ date }: { date: Date }) {
+export default function Menus({ date }: { date: Date }) {
   try {
-    const [haksik, gyosik, bunsik] = await Promise.all([
-      getHaksik(date, HaksikType.HAKSIK),
-      getHaksik(date, HaksikType.GYOSIK),
-      getHaksik(date, HaksikType.BUNSIK),
-    ]);
     return (
       <>
         <div className="py-2 text-sm font-medium w-full text-center">아침</div>
-        <div className="flex flex-row overflow-x-auto gap-2 w-full">
-          <MenuCard
-            name="학생식당"
-            time={haksik.menus[0].time}
-            menu={haksik.menus[0].menu}
+        <div className="menu-cards">
+          <Menu
+            type={HaksikType.HAKSIK}
+            date={date}
+            time={HaksikTime.BREAKFAST}
           />
         </div>
         <div className="py-2 text-sm font-medium w-full text-center">점심</div>
-        <div className="flex flex-row overflow-x-auto gap-2 w-full">
-          <MenuCard
-            name="학생식당"
-            time={haksik.menus[1].time}
-            menu={haksik.menus[1].menu}
-          />
-          <MenuCard
-            name="교직원식당"
-            time={gyosik.menus[0].time}
-            menu={gyosik.menus[0].menu}
-          />
+        <div className="menu-cards">
+          <Menu type={HaksikType.HAKSIK} date={date} time={HaksikTime.LUNCH} />
+          <Menu type={HaksikType.GYOSIK} date={date} time={HaksikTime.LUNCH} />
         </div>
         <div className="py-2 text-sm font-medium w-full text-center">저녁</div>
-        <div className="flex flex-row overflow-x-auto gap-2 w-full">
-          <MenuCard
-            name="교직원식당"
-            time={gyosik.menus[1].time}
-            menu={gyosik.menus[1].menu}
-          />
+        <div className="menu-cards">
+          <Menu type={HaksikType.GYOSIK} date={date} time={HaksikTime.DINNER} />
         </div>
-        <div className="flex flex-row overflow-x-auto gap-2 w-full">
-          <MenuCard
-            name="분식당"
-            time={bunsik.menus[0].time}
-            menu={bunsik.menus[0].menu}
-          />
+        <div className="menu-cards">
+          <Menu type={HaksikType.BUNSIK} date={date} time={HaksikTime.ANY} />
         </div>
       </>
     );
