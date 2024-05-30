@@ -1,12 +1,17 @@
+'use client';
+
+import { useState } from 'react';
 import Header from './ui/header';
 import Menus from './ui/menus';
 
-export default function Home() {
+export default function MainPage() {
+  const [date] = useState(new Date());
+
   return (
     <>
-      <Header date={new Date()} />
+      <Header date={date} />
       <main className="flex flex-col p-4 gap-2 items-stretch">
-        <Menus date={new Date()} />
+        <Menus date={date} />
       </main>
     </>
   );
