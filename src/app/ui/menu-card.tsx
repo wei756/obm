@@ -1,10 +1,10 @@
 export interface Props {
   name: string;
-  time: [string, string][];
+  time?: [string, string][];
   menu: string[];
 }
 
-export default function MenuCard({ name, time, menu }: Props) {
+export default function MenuCard({ name, time = [], menu }: Props) {
   return (
     <div className="menu-card flex flex-col gap-4 p-4 bg-gray-200 rounded-2xl grow w-0 min-w-max">
       <div className="flex flex-row gap-2 w-max min-w-max">
