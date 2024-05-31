@@ -6,10 +6,21 @@ export const getHaksik = async (
   date: Date,
   type: HaksikType,
 ): Promise<MenuInfo> => {
+  const baseUrl = {
+    [HaksikType.HAKSIK]: 'https://www.kumoh.ac.kr/ko',
+    [HaksikType.GYOSIK]: 'https://www.kumoh.ac.kr/ko',
+    [HaksikType.BUNSIK]: 'https://www.kumoh.ac.kr/ko',
+    [HaksikType.PUREUM]: 'https://dorm.kumoh.ac.kr/dorm',
+    [HaksikType.OREUM1]: 'https://dorm.kumoh.ac.kr/dorm',
+    [HaksikType.OREUM3]: 'https://dorm.kumoh.ac.kr/dorm',
+  };
   const sikType = {
     [HaksikType.HAKSIK]: 'restaurant01',
     [HaksikType.GYOSIK]: 'restaurant02',
     [HaksikType.BUNSIK]: 'restaurant04',
+    [HaksikType.PUREUM]: 'restaurant_menu01',
+    [HaksikType.OREUM1]: 'restaurant_menu02',
+    [HaksikType.OREUM3]: 'restaurant_menu03',
   };
 
   const dayOffset = (date.getDay() + 6) % 7;
@@ -17,7 +28,7 @@ export const getHaksik = async (
   const newDate = new Date(date.getTime() - dayOffset * 24 * 60 * 60 * 1000);
 
   const res = await fetch(
-    `https://www.kumoh.ac.kr/ko/${sikType[type]}.do?mode=menuList&srDt=${newDate
+    `${baseUrl[type]}/${sikType[type]}.do?mode=menuList&srDt=${newDate
       .toISOString()
       .slice(0, 10)}`,
     { cache: 'force-cache', next: { revalidate: 3600 } },
