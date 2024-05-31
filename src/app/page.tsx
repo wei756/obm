@@ -1,8 +1,9 @@
 import Header from './ui/header';
 import Menus from './ui/menus';
 
+export const revalidate = 3600;
+
 export default function MainPage() {
-  // const [date] = useState(new Date());
   const date = new Date();
 
   return (
