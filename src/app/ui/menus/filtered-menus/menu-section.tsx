@@ -43,7 +43,7 @@ export default function MenuSection(props: Props) {
   if (!mounted) {
     return (
       <>
-        <div className="section-time">{props.title ?? props.time}</div>
+        <SectionHeader>{props.title ?? props.time}</SectionHeader>
         <div className="menu-cards">
           <MenuCard name="로딩중..." menu={[]} />
         </div>
@@ -54,9 +54,13 @@ export default function MenuSection(props: Props) {
   return (
     showAt(props.time) && (
       <>
-        <div className="section-time">{props.title ?? props.time}</div>
+        <SectionHeader>{props.title ?? props.time}</SectionHeader>
         <div className="menu-cards">{menusAt(props.time)}</div>
       </>
     )
   );
+}
+
+export function SectionHeader({ children }: { children: React.ReactNode }) {
+  return <div className="section-time">{children}</div>;
 }

@@ -20,8 +20,10 @@ const config: Config = {
       black: 'black',
       gray: {
         '100': '#f3f4f6',
+        '200': '#e5e7eb',
       },
       maincolor: '#0085ff',
+      'maincolor-light': '#0085ff33',
     },
   },
   plugins: [],

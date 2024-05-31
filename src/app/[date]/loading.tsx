@@ -1,21 +1,22 @@
 import MenuCard from '../ui/menu-card';
+import { SectionHeader } from '../ui/menus/filtered-menus/menu-section';
 
 export default function Loading() {
   return (
     <>
-      <div className="py-2 text-sm font-medium w-full text-center">아침</div>
+      <SectionHeader>아침</SectionHeader>
       <div className="menu-cards">
         <MenuCardSkeleton />
       </div>
-      <div className="py-2 text-sm font-medium w-full text-center">점심</div>
+      <SectionHeader>점심</SectionHeader>
       <div className="menu-cards">
         <MenuCardSkeleton />
       </div>
-      <div className="py-2 text-sm font-medium w-full text-center">저녁</div>
+      <SectionHeader>저녁</SectionHeader>
       <div className="menu-cards">
         <MenuCardSkeleton />
       </div>
-      <div className="py-2 text-sm font-medium w-full text-center">분식당</div>
+      <SectionHeader>분식당</SectionHeader>
       <div className="menu-cards">
         <MenuCardSkeleton />
       </div>

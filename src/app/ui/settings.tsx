@@ -19,13 +19,13 @@ export default function Settings() {
   const options = Object.values(HaksikType).map((type) => (
     <li key={type}>
       <button
-        className="flex items-center w-max px-4 py-2 gap-4"
+        className="flex items-center w-max px-4 py-2 gap-4 active:bg-gray-100 transition-colors"
         onClick={() => {
           console.log('clicked', type);
           updateDisplaySikdang(type, !displaySikdang[type]);
         }}
       >
-        <span className="w-[5rem] text-left">{type}</span>
+        <span className="w-[5rem] text-left text-sm">{type}</span>
         <CheckIcon
           className={clsx('size-6 text-maincolor', {
             'opacity-0': !displaySikdang[type],
