@@ -25,6 +25,18 @@ export default function Menus({ date }: { date: Date }) {
         <div className="menu-cards">
           <Menu type={HaksikType.BUNSIK} date={date} time={HaksikTime.ANY} />
         </div>
+        <div className="py-2 text-sm font-medium w-full text-center">기숙사 점심</div>
+        <div className="menu-cards">
+          <Menu type={HaksikType.PUREUM} date={date} time={HaksikTime.LUNCH} />
+          <Menu type={HaksikType.OREUM1} date={date} time={HaksikTime.LUNCH} />
+          <Menu type={HaksikType.OREUM3} date={date} time={HaksikTime.LUNCH} />
+        </div>
+        <div className="py-2 text-sm font-medium w-full text-center">기숙사 저녁</div>
+        <div className="menu-cards">
+          <Menu type={HaksikType.PUREUM} date={date} time={HaksikTime.DINNER} />
+          <Menu type={HaksikType.OREUM1} date={date} time={HaksikTime.DINNER} />
+          <Menu type={HaksikType.OREUM3} date={date} time={HaksikTime.DINNER} />
+        </div>
       </>
     );
   } catch (e) {
