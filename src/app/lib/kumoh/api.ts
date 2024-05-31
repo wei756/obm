@@ -71,7 +71,7 @@ const parseMenu = (el: HTMLElement): MenuItem => {
       .filter((li) => li.rawText !== '*재학생만 해당') ?? [];
 
   return {
-    menu: menus.map((li) => li.rawText),
+    menu: menus.map((li) => li.rawText.replaceAll('&amp;', '&')),
     time: times,
   };
 };
