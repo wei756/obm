@@ -6,7 +6,7 @@ export interface Props {
 
 export default function MenuCard({ name, time = [], menu }: Props) {
   return (
-    <div className="menu-card flex flex-col gap-4 p-4 bg-gray-200 rounded-2xl grow w-0 min-w-max">
+    <div className="menu-card flex flex-col gap-4 p-4 bg-gray-100 rounded-2xl grow w-0 min-w-max">
       <div className="flex flex-row gap-2 w-max min-w-max">
         <span className="text-sm font-medium w-max">{name}</span>
         {time.map((time, index) => (

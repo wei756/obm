@@ -1,3 +1,4 @@
+import { MenuProvider } from '../ui/context';
 import Header from '../ui/header';
 
 export default function Layout({
@@ -9,9 +10,9 @@ export default function Layout({
 }) {
   const date = new Date(params.date);
   return (
-    <>
+    <MenuProvider>
       <Header date={date} />
       <main className="flex flex-col p-4 gap-2 items-stretch">{children}</main>
-    </>
+    </MenuProvider>
   );
 }

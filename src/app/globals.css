@@ -6,4 +6,10 @@
   .menu-cards {
     @apply flex flex-row overflow-x-auto gap-2 w-full;
   }
+  .section-time {
+    @apply py-2 text-sm font-medium w-full text-center;
+  }
+  .main-shadow {
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+  }
 }
