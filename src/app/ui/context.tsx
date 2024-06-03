@@ -1,15 +1,17 @@
 'use client';
 
 import { createContext, useContext, useMemo, useState } from 'react';
-import { HaksikType } from '../lib/types';
+import { HaksikTime, HaksikType } from '../lib/types';
 import useStorage from '../lib/hooks/useStorage';
 
 export type Values = {
   readonly displaySikdang: Record<HaksikType, boolean>;
+  readonly displayTime: Record<HaksikTime, boolean>;
 };
 
 export type Actions = {
   readonly updateDisplaySikdang: (type: HaksikType, value: boolean) => void;
+  readonly updateDisplayTime: (time: HaksikTime, value: boolean) => void;
 };
 
 const MenuValueContext = createContext<Values>({
@@ -21,10 +23,17 @@ const MenuValueContext = createContext<Values>({
     [HaksikType.OREUM1]: true,
     [HaksikType.OREUM3]: true,
   },
+  displayTime: {
+    [HaksikTime.BREAKFAST]: true,
+    [HaksikTime.LUNCH]: true,
+    [HaksikTime.DINNER]: true,
+    [HaksikTime.ANY]: true,
+  },
 });
 
 const MenuActionContext = createContext<Actions>({
   updateDisplaySikdang: (type: HaksikType, value: boolean) => {},
+  updateDisplayTime: (time: HaksikTime, value: boolean) => {},
 });
 
 type Props = {
@@ -42,20 +51,43 @@ export function MenuProvider(props: Props): React.ReactNode {
     [HaksikType.OREUM1]: true,
     [HaksikType.OREUM3]: true,
   });
+  const [displayTime, setDisplayTime] = useStorage<Record<HaksikTime, boolean>>(
+    'haksik.displayTime',
+    {
+      [HaksikTime.BREAKFAST]: true,
+      [HaksikTime.LUNCH]: true,
+      [HaksikTime.DINNER]: true,
+      [HaksikTime.ANY]: true,
+    },
+  );
 
   const updateDisplaySikdang = (type: HaksikType, value: boolean) => {
-    console.log('updateDisplaySikdang', type, value);
     setDisplaySikdang((prev) => ({
       ...prev,
       [type]: value,
     }));
   };
 
+  const updateDisplayTime = (time: HaksikTime, value: boolean) => {
+    setDisplayTime((prev) => ({
+      ...prev,
+      [time]: value,
+    }));
+  };
+
   const actions: Actions = useMemo(
     () => ({
       updateDisplaySikdang,
+      updateDisplayTime,
     }),
-    [updateDisplaySikdang, setDisplaySikdang, displaySikdang],
+    [
+      updateDisplaySikdang,
+      setDisplaySikdang,
+      displaySikdang,
+      updateDisplayTime,
+      setDisplayTime,
+      displayTime,
+    ],
   );
 
   return (
@@ -63,6 +95,7 @@ export function MenuProvider(props: Props): React.ReactNode {
       <MenuValueContext.Provider
         value={{
           displaySikdang,
+          displayTime,
         }}
       >
         {props.children}

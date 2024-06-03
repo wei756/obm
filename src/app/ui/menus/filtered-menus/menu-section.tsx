@@ -15,7 +15,7 @@ export interface Props {
   }[];
 }
 export default function MenuSection(props: Props) {
-  const { displaySikdang } = useMenuValues();
+  const { displaySikdang, displayTime } = useMenuValues();
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
     setMounted(true);
@@ -52,7 +52,8 @@ export default function MenuSection(props: Props) {
   }
 
   return (
-    showAt(props.time) && (
+    showAt(props.time) &&
+    (props.time === HaksikTime.ANY || displayTime[props.time]) && (
       <>
         <SectionHeader>{props.title ?? props.time}</SectionHeader>
         <div className="menu-cards">{menusAt(props.time)}</div>
