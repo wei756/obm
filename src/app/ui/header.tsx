@@ -8,7 +8,9 @@ import YesterdayButton from './header/yesterday-button';
 
 export default function Header() {
   const searchParams = useSearchParams();
-  const date = new Date(searchParams.get('date') || Date.now());
+  const date = new Date(
+    searchParams.get('date') || Date.now() + 1000 * 60 * 60 * 9,
+  );
   return (
     <header className="flex flex-row justify-between items-center p-2 border-b bg-white border-gray-200 sticky top-0">
       <h1 className="text-lg font-medium pl-4">

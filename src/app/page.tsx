@@ -9,7 +9,7 @@ export default function MainPage({
 }: {
   searchParams: { date: string };
 }) {
-  const date = new Date(searchParams.date || Date.now());
+  const date = new Date(searchParams.date || Date.now() + 1000 * 60 * 60 * 9);
   return (
     <Layout>
       <Menus date={date} />
