@@ -8,7 +8,7 @@ export default function YesterdayButton({ today }: { today: Date }) {
   const yesterday = new Date(today.getTime() - 24 * 60 * 60 * 1000);
   return (
     <Link
-      href={`/${yesterday.toISOString().slice(0, 10)}`}
+      href={`/?date=${yesterday.toISOString().slice(0, 10)}`}
       onClick={() =>
         sendGAEvent({ event: 'buttonClicked', value: 'goto-yesterday' })
       }

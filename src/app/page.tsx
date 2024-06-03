@@ -1,20 +1,19 @@
-import { MenuProvider } from './ui/context';
-import Header from './ui/header';
+import Layout from './_layout';
 import Menus from './ui/menus';
 import Settings from './ui/settings';
 
 export const revalidate = 3600;
 
-export default function MainPage() {
-  const date = new Date();
-
+export default function MainPage({
+  searchParams,
+}: {
+  searchParams: { date: string };
+}) {
+  const date = new Date(searchParams.date || Date.now());
   return (
-    <MenuProvider>
-      <Header date={date} />
-      <main className="flex flex-col p-4 gap-2 items-stretch">
-        <Menus date={date} />
-        <Settings />
-      </main>
-    </MenuProvider>
+    <Layout>
+      <Menus date={date} />
+      <Settings />
+    </Layout>
   );
 }

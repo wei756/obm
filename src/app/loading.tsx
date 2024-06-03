@@ -1,5 +1,5 @@
-import MenuCard from '../ui/menu-card';
-import { SectionHeader } from '../ui/menus/filtered-menus/menu-section';
+import MenuCard from './ui/menu-card';
+import { SectionHeader } from './ui/menus/filtered-menus/menu-section';
 
 export default function Loading() {
   return (
