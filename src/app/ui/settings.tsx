@@ -38,7 +38,7 @@ export default function Settings() {
 
   const options = [
     ...timeOptions,
-    <div className="px-4">
+    <div key="line" className="px-4">
       <div className="w-full h-px bg-gray-200"></div>
     </div>,
     sikdangOptions,
