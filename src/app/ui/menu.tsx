@@ -20,7 +20,7 @@ async function Menu(props: Props) {
   const haksik = await getHaksik(props.date, props.type);
 
   const menuOrder = HaksikTimeOrder[props.type][props.time];
-  if (menuOrder === -1 || haksik.menus.length === 0) {
+  if (menuOrder === -1 || haksik.menus.length === 0 || !haksik.menus[menuOrder]) {
     return <MenuCard name={props.type} menu={['식단 정보가 없습니다.']} />;
   }
   return (
