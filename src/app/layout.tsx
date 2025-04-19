@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Noto_Sans_KR } from 'next/font/google';
 import { GoogleAnalytics } from '@next/third-parties/google';
+import { Analytics } from '@vercel/analytics/react';
 import './globals.css';
 
 const notosans = Noto_Sans_KR({ subsets: ['latin'] });
@@ -31,6 +32,7 @@ export default function RootLayout({
     <html lang="ko">
       <body className={notosans.className}>{children}</body>
       <GoogleAnalytics gaId={GA_TRACKING_ID} />
+      <Analytics />
     </html>
   );
 }
